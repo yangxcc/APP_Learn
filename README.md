@@ -29,3 +29,8 @@ Android 运行时环境由**核心库和 Dalvik 虚拟机**构成。核心库为
 #### 应用程序层
 * 应用程序层提供了一系列核心应用程序，如打电话、浏览器、联系人、相册、地图和电子市场等。 
 * 应用程序存储在手机的内部存储区，且按包名存放，需要特定的程序才能查看。
+## 线性布局的嵌套    seekbar改变透明度和背景颜色
+![](https://github.com/yangxcc/APP_Learn/blob/master/image/线性布局的嵌套.png)，LinearLayout按照垂直(Vertical)或者水平(Horizontal)的顺序依次排列子元素，同时想要改变某个控件的形状需要在drawable文件夹下添加shape.xml文件，通过控件的background属性来改变其形状。<br>
+透过拉动活动条来改变透明度，这里需要给seekbar添加一个监听，重写其方法，注意process代表此时活动条的值
+![](https://github.com/yangxcc/APP_Learn/blob/master/image/seekbar改变透明度与背景.png)
+![](https://github.com/yangxcc/APP_Learn/blob/master/image/seekbar改变透明度与背景2.png)
