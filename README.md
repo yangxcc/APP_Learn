@@ -34,3 +34,9 @@ Android 运行时环境由**核心库和 Dalvik 虚拟机**构成。核心库为
 透过拉动活动条来改变透明度，这里需要给seekbar添加一个监听，重写其方法，注意process代表此时活动条的值
 ![](https://github.com/yangxcc/APP_Learn/blob/master/image/seekbar改变透明度与背景.png)
 ![](https://github.com/yangxcc/APP_Learn/blob/master/image/seekbar改变透明度与背景2.png)
+## Activity的生命周期
+Activity作为Android中的最重要的组件，用于设计应用程序的用户界面，其内容来源于布局文件。在一个Activity的onCreate()方法中，使用父类的setContentView()呈现内容视图，并以布局文件作为参数，Activity包含了响应界面事件的代码，即具有控制器功能。<br>
+复杂的Android应用中可能包含多个Activity，当打开一个新的Activity时，先前的那个Activity会被置于暂停状态，并压入历史堆栈中，用户可以通过返回键退回到之前的那个Activity。<br>
+Activity是由Android系统维护的，每个Activity除了有创建onCreate()、销毁onDestroy() 两个基本方法外，还有激活方法onStart()、恢复方法onResume()、暂停方法onPause()、停止方法onStop()和onRestart()。 <br>
+Activity在其生命周期中存在三种不同的状态：运行态、暂停态和停止态。运行态是指Activity调用onStart()方法后出现在屏幕的最上层的状态，此时用户通常可以获取焦点；暂停态是指Activity调用onPause()方法之后出现的状态，其上还有处于运行态的Activity存在，并且Activity没有被完全挡住，即处于暂停态的Activity有一部分视图被用户所见；停止态是指当前Activity调用onStop()之后所处的状态，此时他完全被处于运行态的Activity挡住，即程序界面完全不被用户所见。<br>
+![](https://github.com/yangxcc/APP_Learn/blob/master/image/activity生命周期.png)
