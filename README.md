@@ -42,10 +42,10 @@ Activity在其生命周期中存在三种不同的状态：运行态、暂停态
 从上图可以看出，当某个Activity首次运行时，肯定会调用的三个方法依次是onCreate()，onStart()，onResume()，执行完这三个方法后的Activity肯定会显示在界面上，此时的Activity处于运行态。若此时的界面被隐藏(退出到后台)，则会依次调用onPause(),onStop()，对于处于运行态的Activity，当用户按返回键退出时，将调用方法onStop()。 
 **处于暂停态或停止态的Activity在系统资源缺乏时，可能被杀死，以释放其占用的资源。这就是为什么有时按返回键会调用destory方法的原因**<br>
 android.util.Log类使用如下方法输出不同级别的日志信息：
-** Log.v("TAG", "Verbose level message");----Verbose
-** Log.d("TAG", "Debug level message");------Debug
-** Log.i("TAG","Information level message");---Information
-** Log.w("TAG", "Warning level message");-----Warning
-** Log.e("TAG", "Error level message");-----Error
-** Log.wtf("TAG", "Assert level message");----Assert
+* Log.v("TAG", "Verbose level message");----Verbose
+* Log.d("TAG", "Debug level message");------Debug
+* Log.i("TAG","Information level message");---Information
+* Log.w("TAG", "Warning level message");-----Warning
+* Log.e("TAG", "Error level message");-----Error
+* Log.wtf("TAG", "Assert level message");----Assert
 按照严重程度从小到大排序：Verbose<Debug<Information<Warning<Error<Assert，选择等级低的可以显示出所有比其等级高的日志信息。Assert是最严重的错误，很少出现，这种错误会使系统崩溃，用Log.wtf去写。wtf的意思是：What a Terrible Failure.而且在Android开发中，一般是通过Log.x打印信息，因为使用`Log比使用System.out.print的效率高`，原因在于，Log调用的是native层C语言，而System.out是Java语言，C的执行效率要比Java高。
