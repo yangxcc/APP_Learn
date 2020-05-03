@@ -32,11 +32,12 @@ Android 运行时环境由**核心库和 Dalvik 虚拟机**构成。核心库为
 ## 线性布局的嵌套    seekbar改变透明度和背景颜色
 ![](https://github.com/yangxcc/APP_Learn/blob/master/image/线性布局的嵌套.png)，LinearLayout按照垂直(Vertical)或者水平(Horizontal)的顺序依次排列子元素，同时想要改变某个控件的形状需要在drawable文件夹下添加shape.xml文件，通过控件的background属性来改变其形状。<br>
 透过拉动活动条来改变透明度，这里需要给seekbar添加一个监听，重写其方法，注意process代表此时活动条的值
-![](https://github.com/yangxcc/APP_Learn/blob/master/image/seekbar改变透明度与背景.png)
 ![](https://github.com/yangxcc/APP_Learn/blob/master/image/seekbar改变透明度与背景2.png)
 ## Activity的生命周期
 Activity作为Android中的最重要的组件，用于设计应用程序的用户界面，其内容来源于布局文件。在一个Activity的onCreate()方法中，使用父类的setContentView()呈现内容视图，并以布局文件作为参数，Activity包含了响应界面事件的代码，即具有控制器功能。<br>
 复杂的Android应用中可能包含多个Activity，当打开一个新的Activity时，先前的那个Activity会被置于暂停状态，并压入历史堆栈中，用户可以通过返回键退回到之前的那个Activity。<br>
 Activity是由Android系统维护的，每个Activity除了有创建onCreate()、销毁onDestroy() 两个基本方法外，还有激活方法onStart()、恢复方法onResume()、暂停方法onPause()、停止方法onStop()和onRestart()。 <br>
 Activity在其生命周期中存在三种不同的状态：运行态、暂停态和停止态。运行态是指Activity调用onStart()方法后出现在屏幕的最上层的状态，此时用户通常可以获取焦点；暂停态是指Activity调用onPause()方法之后出现的状态，其上还有处于运行态的Activity存在，并且Activity没有被完全挡住，即处于暂停态的Activity有一部分视图被用户所见；停止态是指当前Activity调用onStop()之后所处的状态，此时他完全被处于运行态的Activity挡住，即程序界面完全不被用户所见。<br>
-![](https://github.com/yangxcc/APP_Learn/blob/master/image/activity生命周期.png)
+![](https://github.com/yangxcc/APP_Learn/blob/master/image/activity生命周期.png)<br>
+从上图可以看出，当某个Activity首次运行时，肯定会调用的三个方法依次是onCreate()，onStart()，onResume()，执行完这三个方法后的Activity肯定会显示在界面上，此时的Activity处于运行态。若此时的界面被隐藏(退出到后台)，则会依次调用onPause(),onStop()，对于处于运行态的Activity，当用户按返回键退出时，将调用方法onStop()。 
+**处于暂停态或停止态的Activity在系统资源缺乏时，可能被杀死，以释放其占用的资源。这就是为什么有时按返回键会调用destory方法的原因**
