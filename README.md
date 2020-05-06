@@ -48,4 +48,6 @@ android.util.Log类使用如下方法输出不同级别的日志信息：
 * Log.w("TAG", "Warning level message");-----Warning
 * Log.e("TAG", "Error level message");-----Error
 * Log.wtf("TAG", "Assert level message");----Assert
-按照严重程度从小到大排序：Verbose<Debug<Information<Warning<Error<Assert，选择等级低的可以显示出所有比其等级高的日志信息。Assert是最严重的错误，很少出现，这种错误会使系统崩溃，用Log.wtf去写。wtf的意思是：What a Terrible Failure.而且在Android开发中，一般是通过Log.x打印信息，因为使用`Log比使用System.out.print的效率高`，原因在于，Log调用的是native层C语言，而System.out是Java语言，C的执行效率要比Java高。
+按照严重程度从小到大排序：Verbose<Debug<Information<Warning<Error<Assert，选择等级低的可以显示出所有比其等级高的日志信息。Assert是最严重的错误，很少出现，这种错误会使系统崩溃，用Log.wtf去写。wtf的意思是：What a Terrible Failure.而且在Android开发中，一般是通过Log.x打印信息，因为使用`Log比使用System.out.print的效率高`，原因在于，Log调用的是native层C语言，而System.out是Java语言，C的执行效率要比Java高。<br>
+##### 对TextView的操作
+常用的Text类控件是TextView和EditText。TextView是用来显示字符的控件，而EditText 是用来输入和编辑字符的控件。(注意：EditView 是 TextView 的子类，EditText 是一个具有编辑功能的 TextView 控件。)，当 TextView 的内容特别多时，可使用它的一个重要方法 setMovementMethod(new ScrollingMovementMethod())实现滑动，即可以通过手指的上下滑动来查看内容。在[MyWork2](https://github.com/yangxcc/APP_Learn/MyWork2)中共实现了对TextView的8中操作，包括长文本情况下的“走马灯式”效果实现、阴影效果实现、文字缩放效果实现、在文本周围添加图像、文本框背景前景边框的实现、同一个TextView中文字的不同效果(大小、颜色)以及图文混排的实现。实现效果见[image](https://github.com/yangxcc/APP_Learn/image)文件夹中。
