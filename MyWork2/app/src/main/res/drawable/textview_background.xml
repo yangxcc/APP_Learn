@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+<!--    设置边框的颜色和大小-->
+    <stroke
+        android:width="0.5dp"
+        android:color="#ffff00"/>
+
+    <!-- 设置背景颜色-->
+    <solid android:color="#00ffff"/>
+
+<!--    设置边框圆角-->
+<!--    <corners-->
+<!--        android:bottomLeftRadius="10px"-->
+<!--        android:bottomRightRadius="10px"-->
+<!--        android:topLeftRadius="10px"-->
+<!--        android:topRightRadius="10px" />-->
+<!--  如要设置成圆形  />-->
+    <corners android:radius="360dp"></corners>
+
+    <!--    设置边距-->
+    <padding
+        android:top="2dp"
+        android:bottom="2dp"
+        android:left="6dp"
+        android:right="6dp"/>
+
+</shape>
