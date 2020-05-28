@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">APP_Login</string>
+    <string-array name="username">
+        <item>tom</item>
+        <item>aliy</item>
+        <item>bob</item>
+        <item>aaaaa</item>
+    </string-array>
+</resources>
