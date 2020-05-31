@@ -18,7 +18,6 @@ Android 函数库和运行时环境是第二层，位于 Linux 内核之上，�
 - libc：标准 C 运行库，是 Linux 系统中底层的应用程序开发接口。 
 Android 运行时环境由**核心库和 Dalvik 虚拟机**构成。核心库为开发人员提供了 Android 系统的特有函数功能和 Java 语言的基本函数功能，Dalvik 虚拟机采用适合内存和处理器受限的专用格式。 <br>
 **Dalvik与Java VM的区别**<br>
-二者最大的区别在于：
 * Dalvik是基于寄存器Register-based的虚拟机，Dalvik执行的是dex文件，在执行过程中，每一个应用程序就是一个进程
 * Java VM是以基于栈Stack-based的虚拟机，执行的是Java class文件（字节码文件 bytecode）
 **Dalvik最大的好处在于可以根据硬件实现更大的优化，这更适合移动设备**
