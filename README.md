@@ -1,6 +1,19 @@
 # APP_Learn
 ### 项目结构
-![]()首先认识项目结构，在Andriod项目目录下，manifests文件夹下有AndroidManifests.xml文件，该文件是整个项目的清单文件，在里面可以设置项目名称，项目图标，启动项目时的首页面，项目主题等内容；java文件夹下用来存放java代码，保存app内部的业务逻辑；res是资源文件夹，这下面用于存放app开发过程中使用到的各种类型的资源。
+![]()首先认识项目结构，在Andriod项目目录下，manifests文件夹下有AndroidManifests.xml文件，该文件是整个项目的清单文件，在里面可以设置项目名称，项目图标，启动项目时的首页面，项目主题等内容；java文件夹下用来存放java代码，保存app内部的业务逻辑；res是资源文件夹，这下面用于存放app开发过程中使用到的各种类型的资源。<br>
+Android系统自动为每个资源分配一个十六进制的整型数，用以表明每个资源，保存在名为R.java的文件中(Project视图下)<br>
+![](https://github.com/yangxcc/APP_Learn/blob/master/image/R.java.png)<br>
+- 布局文件夹res/layout项目的布局文件夹res/layout用来存放扩展名为.xml的布局文件，由某种布局管理器管理的若干控件对象组成，供Activity组件使用。 
+- 值文件夹 res/values 值文件夹 res/values 里的 strings.xml 是非常重要的文件，通常存放着布局文件中的控件对象的属性值。
+- 软件设计的国际化，国际化是指在软件设计过程中将特定语言及区域脱钩的过程。当软件移植到不同的语言及区域时，软件本身不需要做任何的修改。Android SDK并没有提供专门的API来实现国际化，而是通过对不同的资源文件进行不同的命名来达到国际化的目的。例如，在布局文件中，定义文本框控件的代码： <TextView …android:text="@string/hello"/> 就是符合国际化的做法，控件值来源于文件res/values/strings.xml，通过键名hello来引用。 如果不通过引用字符串变量的方式，而是直接把字符串常量写在TextView控件的android:text属性后，即<TextView …android:text="字符串常量"/>这种写法，对程序运行没有任何影响，只是它不符合国际化的做法。注意：使用软件设计的国际化，能有效实现程序员与 UI 设计人员工作的分工协作。 
+- 图像文件夹res/drawable与Windows应用程序一样，每个Android应用工程都有一个图标。Android应用默认使用的图标文件ic_launcher是一个绿色的机器人，其文件格式是.xml，存放在文件夹res/mipmap里。更改Android应用默认图标的一种方法是，右键 mipmap 文件夹→New→ Vector Asset→选择 Clip Art。另一种方法，将.png 格式的文件，复制到文件夹 res/drawable， 然后通过 R 文件引用该图像文件。 
+- 音乐文件夹 res/raw 项目使用的音频文件，通常存放在 res/raw 文件夹里。 
+#### Gradle构建Scripts与依赖管理 
+gradle是一种依赖管理工具，基于Groovy语言，主要面向Java应用，它抛弃了基于XML的各种繁琐的配置，取而代之的是一种基于Groovy的内部领域特定语言(DSL)。
+- 一个Android应用中的每个Module都对应一个名为build.gradle的脚本文件，它包含了该Module使用的API版本、仓库(repositories)和依赖等(dependences)
+- 脚本文件setting.gradle声明一些需要加入gradle的Module
+- 脚本文件gradle-wrapper.properties用来配置Gradle及其版本
+- 项目构建脚本是面向所有Module的，文件settings包含了项目的所有Module名称。
 ### Android体系机构
 ![](https://github.com/yangxcc/APP_Learn/blob/master/image/Android%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84.png)
 #### Linux内核（Linux Kernel）
@@ -29,8 +42,22 @@ Android 运行时环境由**核心库和 Dalvik 虚拟机**构成。核心库为
 #### 应用程序层
 * 应用程序层提供了一系列核心应用程序，如打电话、浏览器、联系人、相册、地图和电子市场等。 
 * 应用程序存储在手机的内部存储区，且按包名存放，需要特定的程序才能查看。
-
-## Activity的生命周期
+### Android应用程序的基本组成
+Android应用程序是由组件组成的，组件可以调用相互独立的功能模块，根据完成的功能，组件可以划分为四类核心组件，即Activity、Service、BroadcastReceiver和ContentProvider，值得注意的是：
+* 在结构上，Android应用程序与C语言程序不同，它是**基于组件编程的**
+* Android四大组件中除了ContentProvider外，都是通过Intent激活的
+* Android四大组件均需要在项目清单文件AndroidManifests.xml中使用相关标签进行注册
+#### Acticity组件与视图View
+Activity是Android中最重要的组件，负责用户界面设计。Activity用户界面框架采用MVC模式(Model View Controller)。控制器负责接受并响应程序的外部动作；通过视图反馈应用程序给用户的信息(通常通过UI界面来反馈信息)；模型是应用程序的核心，用于保存数据和代码。Activity组件在清单文件中使用<activity>标签来注册。
+#### Service组件
+Service是Android提供的无用户界面、长时间在后台运行的组件。Android提供了许多系统服务程序。Service组件需要在清单文件中使用<service>标签注册
+#### BroadcastReciver组件
+在Android系统中，当有特定事件发生时就会产生相应的广播。例如，开机启动完成、短信到来、电池电量改变、网络状态改变等。<br>
+BroadcastReciver，即广播接收者，用来接收来自系统或其他应用程序的广播并作出响应。广播接收者组件BroadcastReciver与Service组件一样都没有UI界面。该组件要在清单文件中使用<reciver>组件来进行注册。
+#### ContentProvider组件
+为了跨进程共享数据，Android提供ContentProvider接口，可以在无需了解数据源、路径的情况下，对共享数据进行查询、添加、删除、更新等操作，该组件要在清单文件中使用<provider>标签来注册。
+  
+### Activity的生命周期
 Activity作为Android中的最重要的组件，用于设计应用程序的用户界面，其内容来源于布局文件。在一个Activity的onCreate()方法中，使用父类的setContentView()呈现内容视图，并以布局文件作为参数，Activity包含了响应界面事件的代码，即具有控制器功能。<br>
 复杂的Android应用中可能包含多个Activity，当打开一个新的Activity时，先前的那个Activity会被置于暂停状态，并压入历史堆栈中，用户可以通过返回键退回到之前的那个Activity。<br>
 Activity是由Android系统维护的，每个Activity除了有创建onCreate()、销毁onDestroy() 两个基本方法外，还有激活方法onStart()、恢复方法onResume()、暂停方法onPause()、停止方法onStop()和onRestart()。 <br>
