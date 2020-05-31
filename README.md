@@ -57,6 +57,12 @@ BroadcastReciver，即广播接收者，用来接收来自系统或其他应用�
 #### ContentProvider组件
 为了跨进程共享数据，Android提供ContentProvider接口，可以在无需了解数据源、路径的情况下，对共享数据进行查询、添加、删除、更新等操作，该组件要在清单文件中使用<provider>标签来注册。
   
+#### Application、Context、Intent
+- **应用对象Application**，当Android程序启动时系统会创建一个Application类型的对象，用来存储系统的一些信息，完成数据的传递、共享和存储等一系列操作。Application对象的生命周期是整个程序中最长的，他的生命周期就等于这个程序的生命周期，且是全局、单例的，即在不同的Activity、Service中获得的对象都是同一对象。
+- **上下文对象Context**，Activity和Service都是Context的子类，通过Context提供的方法getApplicationContext()方法就能获到Context对象。Broadcast Receiver，Content Provider并不是Context的子类，他们所持有的Context都是其他组件传递过来的。 Android 组件及通信机制，如下图所示：<br>
+![](https://github.com/yangxcc/APP_Learn/blob/master/image/Android组件之间的通信机制.png)<br>
+- **意图对象Intent**，Android提供轻量级的进程间通信机制Intent，使跨进程通信组件和发送系统广播成为可能，组件Activity、Service、BroadcastReciver都是通过消息机制被激活的，其使用的消息就封装在对象Intent中。<br>
+`Context 是一个抽象类且为Activity的超类，提供了startActivity()方法，并以Intent对象作为参数，用于实现窗体的跳转。 `
 ### Activity的生命周期
 Activity作为Android中的最重要的组件，用于设计应用程序的用户界面，其内容来源于布局文件。在一个Activity的onCreate()方法中，使用父类的setContentView()呈现内容视图，并以布局文件作为参数，Activity包含了响应界面事件的代码，即具有控制器功能。<br>
 复杂的Android应用中可能包含多个Activity，当打开一个新的Activity时，先前的那个Activity会被置于暂停状态，并压入历史堆栈中，用户可以通过返回键退回到之前的那个Activity。<br>
