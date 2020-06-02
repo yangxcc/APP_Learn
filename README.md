@@ -62,7 +62,10 @@ BroadcastReciver，即广播接收者，用来接收来自系统或其他应用�
 - **上下文对象Context**，Activity和Service都是Context的子类，通过Context提供的方法getApplicationContext()方法就能获到Context对象。Broadcast Receiver，Content Provider并不是Context的子类，他们所持有的Context都是其他组件传递过来的。 Android 组件及通信机制，如下图所示：<br>
 ![](https://github.com/yangxcc/APP_Learn/blob/master/image/Android组件之间的通信机制.png)<br>
 - **意图对象Intent**，Android提供轻量级的进程间通信机制Intent，使跨进程通信组件和发送系统广播成为可能，组件Activity、Service、BroadcastReciver都是通过消息机制被激活的，其使用的消息就封装在对象Intent中。<br>
-`Context 是一个抽象类且为Activity的超类，提供了startActivity()方法，并以Intent对象作为参数，用于实现窗体的跳转。 `
+`Context 是一个抽象类且为Activity的超类，提供了startActivity()方法，并以Intent对象作为参数，用于实现窗体的跳转。 `<br>
+#### Android虚拟机Dalvik
+尽管Android的编程语言是Java，但是Android使用的虚拟机Dalvik与Java使用的虚拟机JVM不能兼容，因为Dalvik是基于寄存器的架构，而JVM是基于栈的架构，此外，Dalvik能根据硬件实现最大的优化，更适合于移动设备。<br>
+运行用户开发的Android应用程序时，如果在系统目录\data\dalvik里存放相应的.odex文件，Android的Dalvik虚拟机会直接从.odex中加载指令和数据后执行，若没有odex的话，需要从.apk包中提取class.dex并生成.odex文件，然后再加载并执行，`因为真正在Android虚拟机上运行的是odex文件`，那么就不会再从.apk里面去解压、提取，显然，这种预先提取的方式可以加快软件的启动速度，减少对RAM的占用。
 ### Activity的生命周期
 Activity作为Android中的最重要的组件，用于设计应用程序的用户界面，其内容来源于布局文件。在一个Activity的onCreate()方法中，使用父类的setContentView()呈现内容视图，并以布局文件作为参数，Activity包含了响应界面事件的代码，即具有控制器功能。<br>
 复杂的Android应用中可能包含多个Activity，当打开一个新的Activity时，先前的那个Activity会被置于暂停状态，并压入历史堆栈中，用户可以通过返回键退回到之前的那个Activity。<br>
@@ -72,12 +75,12 @@ Activity在其生命周期中存在三种不同的状态：运行态、暂停态
 从上图可以看出，当某个Activity首次运行时，肯定会调用的三个方法依次是onCreate()，onStart()，onResume()，执行完这三个方法后的Activity肯定会显示在界面上，此时的Activity处于运行态。若此时的界面被隐藏(退出到后台)，则会依次调用onPause(),onStop()，对于处于运行态的Activity，当用户按返回键退出时，将调用方法onStop()。 
 **处于暂停态或停止态的Activity在系统资源缺乏时，可能被杀死，以释放其占用的资源。这就是为什么有时按返回键会调用destory方法的原因**<br>
 android.util.Log类使用如下方法输出不同级别的日志信息：
-* Log.v("TAG", "Verbose level message");----Verbose
-* Log.d("TAG", "Debug level message");------Debug
-* Log.i("TAG","Information level message");---Information
-* Log.w("TAG", "Warning level message");-----Warning
-* Log.e("TAG", "Error level message");-----Error
-* Log.wtf("TAG", "Assert level message");----Assert
+* Log.v("TAG", "Verbose level message");----Verbose详细
+* Log.d("TAG", "Debug level message");------Debug调试
+* Log.i("TAG","Information level message");---Information信息
+* Log.w("TAG", "Warning level message");-----Warning警告
+* Log.e("TAG", "Error level message");-----Error错误
+* Log.wtf("TAG", "Assert level message");----Assert断言
 按照严重程度从小到大排序：Verbose<Debug<Information<Warning<Error<Assert，选择等级低的可以显示出所有比其等级高的日志信息。Assert是最严重的错误，很少出现，这种错误会使系统崩溃，用Log.wtf去写。wtf的意思是：What a Terrible Failure.而且在Android开发中，一般是通过Log.x打印信息，因为使用`Log比使用System.out.print的效率高`，原因在于，Log调用的是native层C语言，而System.out是Java语言，C的执行效率要比Java高。<br>
 ##### 对TextView的操作
 常用的Text类控件是TextView和EditText。TextView是用来显示字符的控件，而EditText 是用来输入和编辑字符的控件。(注意：EditView 是 TextView 的子类，EditText 是一个具有编辑功能的 TextView 控件。)，当 TextView 的内容特别多时，可使用它的一个重要方法 setMovementMethod(new ScrollingMovementMethod())实现滑动，即可以通过手指的上下滑动来查看内容。在[MyWork2](https://github.com/yangxcc/APP_Learn/tree/master/MyWork2)中共实现了对TextView的8中操作，包括长文本情况下的“走马灯式”效果实现、阴影效果实现、文字缩放效果实现、在文本周围添加图像、文本框背景前景边框的实现、同一个TextView中文字的不同效果(大小、颜色)以及图文混排的实现。实现效果见[image](https://github.com/yangxcc/APP_Learn/tree/master/image)文件夹中。
