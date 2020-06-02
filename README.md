@@ -1,6 +1,7 @@
 # APP_Learn
 ### 项目结构
-![]()首先认识项目结构，在Andriod项目目录下，manifests文件夹下有AndroidManifests.xml文件，该文件是整个项目的清单文件，在里面可以设置项目名称，项目图标，启动项目时的首页面，项目主题等内容；java文件夹下用来存放java代码，保存app内部的业务逻辑；res是资源文件夹，这下面用于存放app开发过程中使用到的各种类型的资源。<br>
+在Android Studio中创建的项目，默认使用 Android 视图。有时，需要进行一些非常规的操作，如获取应用的安装包文件（*.apk）、添加第三方的依赖jar包等，这就需要切换至Project视图。快速浏览Android API，可选择 Packages 视图。<br>
+首先认识项目结构，在Andriod项目目录下，manifests文件夹下有AndroidManifests.xml文件，该文件是整个项目的清单文件，在里面可以设置项目名称，项目图标，启动项目时的首页面，项目主题等内容；java文件夹下用来存放java代码，保存app内部的业务逻辑；res是资源文件夹，这下面用于存放app开发过程中使用到的各种类型的资源。<br>
 Android系统自动为每个资源分配一个十六进制的整型数，用以表明每个资源，保存在名为R.java的文件中(Project视图下)<br>
 ![](https://github.com/yangxcc/APP_Learn/blob/master/image/R.java.png)<br>
 - 布局文件夹res/layout项目的布局文件夹res/layout用来存放扩展名为.xml的布局文件，由某种布局管理器管理的若干控件对象组成，供Activity组件使用。 
