@@ -19,4 +19,4 @@ login_input_text.setThreshold(1);   // 输入一个字符便开始提示
 （2）Adapter与Activity之间的数据交互，在一些博客中写到在Adapter中创建一个接口和setlistener函数，这种方面应该可行，但是直接定义静态变量，通过类名.静态变量获得。<br>
 **本项目开发的重点在于ListView通过adapter获取数据，以及adapter与activity之间的数据交互**<br>
 项目部分结果展示<br>
-![](https://github.com/yangxcc/APP_Learn/blob/master/image/购物车购物界面.png)<br>
+![](https://github.com/yangxcc/APP_Learn/blob/master/image/购物车效果.gif)<br>
