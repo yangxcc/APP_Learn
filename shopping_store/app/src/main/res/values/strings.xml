@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">shopping_store</string>
+    <string-array name="sorts">
+        <item>时令水果</item>
+        <item>新鲜蔬菜</item>
+        <item>肉禽蛋品</item>
+        <item>海鲜水产</item>
+        <item>乳品烘焙</item>
+        <item>面点主食</item>
+        <item>餐饮熟食</item>
+        <item>净菜半成品</item>
+        <item>粮油调味</item>
+        <item>休闲零食</item>
+        <item>中外名酒</item>
+    </string-array>
+</resources>
